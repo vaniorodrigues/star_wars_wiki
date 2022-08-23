@@ -16,7 +16,7 @@ class MoviesListView extends StatelessWidget {
         return Card(
           child: ListTile(
             title: Text(movie.title),
-            subtitle: Text('Episódio ${movie.episodeId.toRomanNumeralString()} (${movie.releaseDate.year.toString()})'),
+            subtitle: Text('Episódio ${movie.episodeId.toRomanNumeralString()} (${movie.releaseDate.toString()})'),
           ),
         );
       },
