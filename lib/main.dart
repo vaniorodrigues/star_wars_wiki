@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Star Wars Wiki',
       theme: ThemeData.dark(),
-      home: TransactionsList(),
+      home: HomeScreen(),
     );
   }
 }

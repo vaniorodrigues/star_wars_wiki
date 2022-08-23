@@ -4,7 +4,7 @@ import 'package:star_wars_wiki/http/interceptors/logging_interceptor.dart';
 
 final Client client = InterceptedClient.build(
   interceptors: [LoggingInterceptor()],
-  requestTimeout: const Duration(seconds: 5),
+  requestTimeout: const Duration(seconds: 30),
 );
 
 const String baseUrl = 'https://swapi.dev/api';

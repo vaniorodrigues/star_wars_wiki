@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:star_wars_wiki/http/webclients/movies_webclient.dart';
+import 'package:star_wars_wiki/models/movies.dart';
+import 'package:star_wars_wiki/screens/movies_page.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -10,11 +13,15 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Filmes',
-      style: optionStyle,
-    ),
+
+  final MoviesWebClient movieClient = MoviesWebClient();
+  late Future<Movies> dataFuture;
+  late List<Movie> movies;
+  late Movies moviesData;
+  bool isMoviesLoaded = false;
+
+  List<Widget> widgetOptions = <Widget>[
+    MoviesPage(),
     Text(
       'Index 1: Personagens',
       style: optionStyle,
@@ -29,29 +36,34 @@ class _BottomNavBarState extends State<BottomNavBar> {
     setState(() => _selectedIndex = index);
   }
 
+  // @override
+  // void initState() {
+  //   super.initState();
+
+  //   // fetch data from API
+  //   getMovies();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('BottomNavigationBar'),
-      // ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.movie),
             label: 'Filmes',
             backgroundColor: Colors.red,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: Icon(Icons.person),
             label: 'Personagens',
             backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.favorite),
             label: 'Favoritos',
             backgroundColor: Colors.purple,
           ),
@@ -63,4 +75,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
       ),
     );
   }
+
+  // void getMovies() async {
+  //   moviesData = await movieClient.getMovies();
+  //   if (moviesData != null) {
+  //     setState(() {
+  //       movies = moviesData.results;
+  //       isMoviesLoaded = true;
+  //     });
+  //   }
+  //   isMoviesLoaded = true;
+  // }
 }

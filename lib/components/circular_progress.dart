@@ -5,7 +5,7 @@ class Progress extends StatelessWidget {
 
   const Progress({
     Key? key,
-    this.message = 'Loading...',
+    this.message = 'Carregando...',
   }) : super(key: key);
 
   @override
