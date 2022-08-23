@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:star_wars_wiki/http/webclients/movies_webclient.dart';
-import 'package:star_wars_wiki/models/movies.dart';
 import 'package:star_wars_wiki/screens/movies_page.dart';
+import 'package:star_wars_wiki/screens/people_page.dart';
+
+// TODO? make movies and people load only once from API
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -14,18 +15,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
-  final MoviesWebClient movieClient = MoviesWebClient();
-  late Future<Movies> dataFuture;
-  late List<Movie> movies;
-  late Movies moviesData;
-  bool isMoviesLoaded = false;
-
   List<Widget> widgetOptions = <Widget>[
     MoviesPage(),
-    Text(
-      'Index 1: Personagens',
-      style: optionStyle,
-    ),
+    PeoplePage(),
     Text(
       'Index 2: Favoritos',
       style: optionStyle,

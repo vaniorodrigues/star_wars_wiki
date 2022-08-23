@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_wiki/components/centered_message.dart';
 import 'package:star_wars_wiki/components/circular_progress.dart';
-import 'package:star_wars_wiki/components/movies_list_view.dart';
-import 'package:star_wars_wiki/http/webclients/movies_webclient.dart';
-import 'package:star_wars_wiki/models/movies.dart';
+import 'package:star_wars_wiki/components/people_list_view.dart';
+import 'package:star_wars_wiki/http/webclients/people_webclient.dart';
+import 'package:star_wars_wiki/models/people.dart';
 
-class MoviesPage extends StatefulWidget {
-  const MoviesPage({Key? key}) : super(key: key);
+class PeoplePage extends StatefulWidget {
+  const PeoplePage({Key? key}) : super(key: key);
 
   @override
-  State<MoviesPage> createState() => _MoviesPageState();
+  State<PeoplePage> createState() => _PeoplePageState();
 }
 
-class _MoviesPageState extends State<MoviesPage> {
-  final MoviesWebClient movieClient = MoviesWebClient();
-  late Future<Movies> dataFuture;
+class _PeoplePageState extends State<PeoplePage> {
+  final PeopleWebClient peopleClient = PeopleWebClient();
+  late Future<List<People>> dataFuture;
 
   @override
   void initState() {
     super.initState();
 
     // fetch data from API
-    dataFuture = movieClient.getMovies();
+    dataFuture = peopleClient.getPeople();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Movies>(
+    return FutureBuilder<List<People>>(
       future: dataFuture,
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
@@ -39,15 +39,10 @@ class _MoviesPageState extends State<MoviesPage> {
             break;
           case ConnectionState.done:
             if (snapshot.hasData) {
-              final Movies movies = snapshot.data!;
-              if (movies.results.isNotEmpty) {
-                return MoviesListView(movies);
-              } else {
-                return CenteredMessage('Error no movies found!', icon: Icons.warning);
-              }
+              return PeopleListView(snapshot.data!);
             } else if (snapshot.hasError) {
               final error = snapshot.error;
-              return CenteredMessage('$error', icon: Icons.error);
+              return CenteredMessage('F: $error', icon: Icons.error);
             } else {
               return CenteredMessage('Unknown error', icon: Icons.error_outline);
             }

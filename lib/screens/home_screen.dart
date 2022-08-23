@@ -7,6 +7,18 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavBar();
+    double height = MediaQuery.of(context).size.height;
+
+    return Column(
+      children: [
+        SizedBox(
+          height: height * 0.2,
+          child: Container(color: Color.fromARGB(255, 223, 217, 217)),
+        ),
+        Expanded(
+          child: BottomNavBar(),
+        ),
+      ],
+    );
   }
 }
