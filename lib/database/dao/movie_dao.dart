@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:star_wars_wiki/database/database.dart';
 import 'package:star_wars_wiki/models/movies.dart';
 
-// DAO - Data Access Object
 class MovieDao {
   static const String tableSql = 'CREATE TABLE $_tableName( '
       '$_id INTEGER PRIMARY KEY, '
@@ -16,17 +16,7 @@ class MovieDao {
   static const String _episodeId = 'episodeId';
   static const String _releaseDate = 'releaseDate';
 
-  Future<int> addFavorite(Movie movie) async {
-    final Database database = await getMovieDatabase();
-    Map<String, dynamic> movieMap = movie.toMap();
-    return database.insert(_tableName, movieMap);
-  }
-
-  Future<int> removeFavorite(Movie movie) async {
-    final Database database = await getMovieDatabase();
-    return database.delete(_tableName, where: '$_title = ?', whereArgs: [movie.title]);
-  }
-
+  /// Fetch all favorites movies from the database.
   Future<List<Movie>> getFavorites() async {
     final Database database = await getMovieDatabase();
     final List<Map<String, dynamic>> maps = await database.query(_tableName);
@@ -40,11 +30,47 @@ class MovieDao {
     });
   }
 
-  //check if movie is favorite
+  /// Check if movie is favorite.
   Future<bool> isFavorite(Movie movie) async {
     final Database database = await getMovieDatabase();
     final List<Map<String, dynamic>> maps =
         await database.query(_tableName, where: '$_title = ?', whereArgs: [movie.title]);
+    debugPrint('isFavorite: ${movie.title}  - ${movie.id} - ${maps.isNotEmpty}');
     return (maps.isNotEmpty);
   }
+
+  /// Changes the favorite status of a movie. If movie is not favorite, add it to the database, else, remove it from the database.
+  Future<void> updateFavorite(Movie movie) async {
+    debugPrint('MovieDao.updateFavorite ---> trying to updateFavorite');
+    final Database database = await getMovieDatabase();
+    final List<Map<String, dynamic>> maps =
+        await database.query(_tableName, where: '$_title = ?', whereArgs: [movie.title]);
+
+    if (maps.isEmpty) {
+      debugPrint('MovieDao.updateFavorite ---> addign to favorites');
+      await database.insert(
+        _tableName,
+        movie.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+    } else {
+      debugPrint('MovieDao.updateFavorite ---> removing from favorites');
+      await database.delete(
+        _tableName,
+        where: '$_title = ?',
+        whereArgs: [movie.title],
+      );
+    }
+  }
+
+  // Future<int> addFavorite(Movie movie) async {
+  //   final Database database = await getMovieDatabase();
+  //   Map<String, dynamic> movieMap = movie.toMap();
+  //   return database.insert(_tableName, movieMap);
+  // }
+
+  // Future<int> removeFavorite(Movie movie) async {
+  //   final Database database = await getMovieDatabase();
+  //   return database.delete(_tableName, where: '$_title = ?', whereArgs: [movie.title]);
+  // }
 }

@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_wiki/widgets/centered_message.dart';
 import 'package:star_wars_wiki/widgets/circular_progress.dart';
+import 'package:star_wars_wiki/components/favorites_list_view.dart';
 import 'package:star_wars_wiki/components/movies_list_view.dart';
 import 'package:star_wars_wiki/database/dao/movie_dao.dart';
 import 'package:star_wars_wiki/http/webclients/movies_webclient.dart';
 import 'package:star_wars_wiki/models/movies.dart';
 
-class MoviesPage extends StatefulWidget {
-  const MoviesPage({Key? key}) : super(key: key);
+class FavoritesPage extends StatefulWidget {
+  const FavoritesPage({Key? key}) : super(key: key);
 
   @override
-  State<MoviesPage> createState() => _MoviesPageState();
+  State<FavoritesPage> createState() => _FavoritesPageState();
 }
 
-class _MoviesPageState extends State<MoviesPage> {
-  final MoviesWebClient movieClient = MoviesWebClient();
-  late Future<Movies> dataFuture;
-  late Future<List<Movie>> dataFutureFavorite;
+class _FavoritesPageState extends State<FavoritesPage> {
+  late Future<List<Movie>> dataFuture;
   final MovieDao daoMovie = MovieDao();
 
   @override
   void initState() {
     super.initState();
 
-    // fetch data from API
-    dataFuture = movieClient.getMovies();
+    // fetch data from DAO
+    dataFuture = daoMovie.getFavorites();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Movies>(
+    return FutureBuilder<List<Movie>>(
+      initialData: const [],
       future: dataFuture,
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
@@ -42,14 +42,14 @@ class _MoviesPageState extends State<MoviesPage> {
             break;
           case ConnectionState.done:
             if (snapshot.hasData) {
-              final Movies movies = snapshot.data!;
-              if (movies.results.isNotEmpty) {
-                return MoviesListView(
-                  movies,
+              final List<Movie> movieList = snapshot.data!;
+              if (movieList.isNotEmpty) {
+                return FavoriteListView(
+                  movieList,
                   dao: daoMovie,
                 );
               } else {
-                return CenteredMessage('Error no movies found!', icon: Icons.warning);
+                return CenteredMessage('Lista de favoritos vazia', icon: Icons.favorite);
               }
             } else if (snapshot.hasError) {
               final error = snapshot.error;

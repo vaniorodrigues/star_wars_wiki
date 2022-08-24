@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:star_wars_wiki/screens/favorites_page.dart';
 import 'package:star_wars_wiki/screens/movies_page.dart';
 import 'package:star_wars_wiki/screens/people_page.dart';
 
@@ -13,28 +14,16 @@ class BottomNavBar extends StatefulWidget {
 
 class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   List<Widget> widgetOptions = <Widget>[
     MoviesPage(),
     PeoplePage(),
-    Text(
-      'Index 2: Favoritos',
-      style: optionStyle,
-    ),
+    FavoritesPage(),
   ];
 
   void _onItemTapped(int index) {
     setState(() => _selectedIndex = index);
   }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-
-  //   // fetch data from API
-  //   getMovies();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -67,15 +56,4 @@ class _BottomNavBarState extends State<BottomNavBar> {
       ),
     );
   }
-
-  // void getMovies() async {
-  //   moviesData = await movieClient.getMovies();
-  //   if (moviesData != null) {
-  //     setState(() {
-  //       movies = moviesData.results;
-  //       isMoviesLoaded = true;
-  //     });
-  //   }
-  //   isMoviesLoaded = true;
-  // }
 }
