@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_wiki/database/dao/movie_dao.dart';
 import 'package:star_wars_wiki/database/dao/person_dao.dart';
-import 'package:star_wars_wiki/models/movies.dart';
-import 'package:star_wars_wiki/models/people.dart';
+import 'package:star_wars_wiki/models/movie.dart';
+import 'package:star_wars_wiki/models/person.dart';
 import 'package:star_wars_wiki/screens/home_screen.dart';
 import 'package:star_wars_wiki/widgets/movie_card.dart';
 import 'package:star_wars_wiki/widgets/person_card.dart';
@@ -28,7 +28,7 @@ class FavoriteListView extends StatelessWidget {
       children: [
         Expanded(
           child: ListView.builder(
-            // shrinkWrap: true,
+            shrinkWrap: true,
             itemCount: movieList.length,
             itemBuilder: (context, index) {
               final Movie movie = movieList[index];
@@ -40,10 +40,10 @@ class FavoriteListView extends StatelessWidget {
             },
           ),
         ),
-        const SizedBox(height: 20),
+        // const SizedBox(height: 5),
         Expanded(
           child: ListView.builder(
-            shrinkWrap: true,
+            // shrinkWrap: true,
             itemCount: personList.length,
             itemBuilder: (context, index) {
               final Person person = personList[index];

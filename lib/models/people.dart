@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:star_wars_wiki/models/person.dart';
+
 People peopleFromJson(String str) => People.fromJson(json.decode(str));
 
 class People {
@@ -22,28 +24,4 @@ class People {
         previous: json['previous'],
         results: List<Person>.from(json['results'].map((x) => Person.fromJson(x))),
       );
-}
-
-class Person {
-  Person(
-    this.id, {
-    required this.name,
-  });
-
-  int id;
-  final String name;
-
-  factory Person.fromJson(Map<String, dynamic> json) => Person(
-        json['id'] ?? 0,
-        name: json['name'],
-      );
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'name': name,
-    };
-  }
-
-  @override
-  String toString() => 'Person(name: $name)';
 }

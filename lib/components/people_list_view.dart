@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_wiki/database/dao/person_dao.dart';
 import 'package:star_wars_wiki/models/people.dart';
+import 'package:star_wars_wiki/models/person.dart';
 import 'package:star_wars_wiki/widgets/person_card.dart';
 
 class PeopleListView extends StatelessWidget {

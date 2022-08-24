@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:numerus/roman/roman.dart';
 import 'package:star_wars_wiki/components/favorite_fetcher.dart';
 import 'package:star_wars_wiki/database/dao/movie_dao.dart';
-import 'package:star_wars_wiki/models/movies.dart';
+import 'package:star_wars_wiki/models/movie.dart';
 
 class MovieCard extends StatelessWidget {
   const MovieCard({
@@ -20,7 +20,7 @@ class MovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 10,
-      margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+      margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
       child: ListTile(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0),

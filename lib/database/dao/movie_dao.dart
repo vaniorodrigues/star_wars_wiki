@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:star_wars_wiki/database/database.dart';
-import 'package:star_wars_wiki/models/movies.dart';
+import 'package:star_wars_wiki/models/movie.dart';
 
 class MovieDao {
   static const String tableSql = 'CREATE TABLE $_tableName( '

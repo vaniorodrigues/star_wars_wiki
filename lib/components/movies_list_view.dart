@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_wiki/database/dao/movie_dao.dart';
+import 'package:star_wars_wiki/models/movie.dart';
 import 'package:star_wars_wiki/models/movies.dart';
 import 'package:star_wars_wiki/widgets/movie_card.dart';
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_wiki/database/dao/person_dao.dart';
-import 'package:star_wars_wiki/models/people.dart';
+import 'package:star_wars_wiki/models/movie.dart';
+import 'package:star_wars_wiki/models/person.dart';
 import 'package:star_wars_wiki/widgets/centered_message.dart';
 import 'package:star_wars_wiki/widgets/circular_progress.dart';
 import 'package:star_wars_wiki/components/favorites_list_view.dart';
 import 'package:star_wars_wiki/database/dao/movie_dao.dart';
-import 'package:star_wars_wiki/models/movies.dart';
 
 class FavoritesPage extends StatefulWidget {
   const FavoritesPage({Key? key}) : super(key: key);
