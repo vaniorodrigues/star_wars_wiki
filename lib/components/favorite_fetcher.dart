@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_wiki/widgets/favorite_button.dart';
-import 'package:star_wars_wiki/database/dao/movie_dao.dart';
-import 'package:star_wars_wiki/models/movies.dart';
 
 /// Checks in database if movie is favorite or not
 class FavoriteFetcher extends StatelessWidget {
-  const FavoriteFetcher({
+  const FavoriteFetcher(
+    this.object, {
     Key? key,
-    required this.movie,
-    required this.daoMovie,
+    required this.dao,
   }) : super(key: key);
 
-  final Movie movie;
-  final MovieDao daoMovie;
+  final dynamic object;
+  final dynamic dao;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: daoMovie.isFavorite(movie),
+      future: dao.isFavorite(object),
       builder: (context, AsyncSnapshot<bool> snapshot) {
         if (snapshot.hasData) {
-          return FavoriteButton(movie: movie, daoMovie: daoMovie, isFavorite: snapshot.data!);
+          return FavoriteButton(object, dao: dao, isFavorite: snapshot.data!);
         } else {
-          return const CircularProgressIndicator();
+          // return const CircularProgressIndicator();
+          return const Text('Loading...');
         }
       },
     );

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:star_wars_wiki/database/dao/person_dao.dart';
+import 'package:star_wars_wiki/models/people.dart';
 import 'package:star_wars_wiki/widgets/centered_message.dart';
 import 'package:star_wars_wiki/widgets/circular_progress.dart';
 import 'package:star_wars_wiki/components/favorites_list_view.dart';
-import 'package:star_wars_wiki/components/movies_list_view.dart';
 import 'package:star_wars_wiki/database/dao/movie_dao.dart';
-import 'package:star_wars_wiki/http/webclients/movies_webclient.dart';
 import 'package:star_wars_wiki/models/movies.dart';
 
 class FavoritesPage extends StatefulWidget {
@@ -15,23 +15,26 @@ class FavoritesPage extends StatefulWidget {
 }
 
 class _FavoritesPageState extends State<FavoritesPage> {
-  late Future<List<Movie>> dataFuture;
-  final MovieDao daoMovie = MovieDao();
+  late Future<List<Movie>> futureMovie;
+  late Future<List<Person>> futurePerson;
+  final MovieDao movieDao = MovieDao();
+  final PersonDao personDao = PersonDao();
 
   @override
   void initState() {
     super.initState();
 
     // fetch data from DAO
-    dataFuture = daoMovie.getFavorites();
+    futureMovie = movieDao.getFavorites();
+    futurePerson = personDao.getFavorites();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Movie>>(
+    return FutureBuilder(
       initialData: const [],
-      future: dataFuture,
-      builder: (context, snapshot) {
+      future: Future.wait([futureMovie, futurePerson]),
+      builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
             break;
@@ -41,19 +44,23 @@ class _FavoritesPageState extends State<FavoritesPage> {
           case ConnectionState.active:
             break;
           case ConnectionState.done:
+            debugPrint('snapshot.data: ${snapshot.data}');
             if (snapshot.hasData) {
-              final List<Movie> movieList = snapshot.data!;
+              final List<Movie> movieList = snapshot.data![0];
+              final List<Person> personList = snapshot.data![1];
               if (movieList.isNotEmpty) {
                 return FavoriteListView(
-                  movieList,
-                  dao: daoMovie,
+                  movieList: movieList,
+                  personList: personList,
+                  movieDao: movieDao,
+                  personDao: personDao,
                 );
               } else {
                 return CenteredMessage('Lista de favoritos vazia', icon: Icons.favorite);
               }
             } else if (snapshot.hasError) {
               final error = snapshot.error;
-              return CenteredMessage('$error', icon: Icons.error);
+              return CenteredMessage('F: $error', icon: Icons.error);
             } else {
               return CenteredMessage('Unknown error', icon: Icons.error_outline);
             }

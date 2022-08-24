@@ -55,4 +55,7 @@ class Movie {
       'releaseDate': releaseDate,
     };
   }
+
+  @override
+  String toString() => 'Movie(title: $title, episodeId: $episodeId, releaseDate: $releaseDate)';
 }

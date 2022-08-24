@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:star_wars_wiki/database/dao/movie_dao.dart';
-import 'package:star_wars_wiki/models/movies.dart';
 
-const Color favColor = Color.fromARGB(255, 228, 78, 67);
+const Color favoriteButtonColor = Color.fromARGB(243, 255, 217, 0);
 const double favIconSize = 24;
 
 class FavoriteButton extends StatefulWidget {
-  const FavoriteButton({
+  const FavoriteButton(
+    this.object, {
     Key? key,
-    required this.movie,
     required this.isFavorite,
-    required this.daoMovie,
+    required this.dao,
   }) : super(key: key);
 
-  final Movie movie;
+  final dynamic object;
   final bool isFavorite;
-  final MovieDao daoMovie;
+  final dynamic dao;
 
   @override
   State<FavoriteButton> createState() => _FavoriteButtonState();
@@ -34,12 +32,12 @@ class _FavoriteButtonState extends State<FavoriteButton> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        widget.daoMovie.updateFavorite(widget.movie);
+        widget.dao.updateFavorite(widget.object);
         setState(() => isFavorite = !isFavorite);
       },
       child: (isFavorite)
-          ? const Icon(Icons.favorite, color: favColor, size: favIconSize)
-          : const Icon(Icons.favorite_border, color: favColor, size: favIconSize),
+          ? const Icon(Icons.favorite, color: favoriteButtonColor, size: favIconSize)
+          : const Icon(Icons.favorite_border, color: favoriteButtonColor, size: favIconSize),
     );
   }
 }

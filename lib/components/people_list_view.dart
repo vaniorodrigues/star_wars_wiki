@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:star_wars_wiki/components/favorite_fetcher.dart';
+import 'package:star_wars_wiki/components/favorites_list_view.dart';
+import 'package:star_wars_wiki/database/dao/person_dao.dart';
 import 'package:star_wars_wiki/models/people.dart';
 
 class PeopleListView extends StatelessWidget {
   final List<People> people;
+  final PersonDao dao;
 
-  const PeopleListView(this.people, {super.key});
+  const PeopleListView(this.people, {super.key, required this.dao});
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +17,9 @@ class PeopleListView extends StatelessWidget {
       itemCount: caracters.length,
       itemBuilder: (context, index) {
         final Person person = caracters[index];
-        return Card(
-          child: ListTile(
-            title: Text(person.name),
-          ),
+        return PersonCard(
+          person: person,
+          dao: dao,
         );
       },
     );

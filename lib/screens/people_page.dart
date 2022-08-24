@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:star_wars_wiki/components/centered_message.dart';
-import 'package:star_wars_wiki/components/circular_progress.dart';
+import 'package:star_wars_wiki/database/dao/person_dao.dart';
+import 'package:star_wars_wiki/widgets/centered_message.dart';
+import 'package:star_wars_wiki/widgets/circular_progress.dart';
 import 'package:star_wars_wiki/components/people_list_view.dart';
 import 'package:star_wars_wiki/http/webclients/people_webclient.dart';
 import 'package:star_wars_wiki/models/people.dart';
@@ -15,6 +16,7 @@ class PeoplePage extends StatefulWidget {
 class _PeoplePageState extends State<PeoplePage> {
   final PeopleWebClient peopleClient = PeopleWebClient();
   late Future<List<People>> dataFuture;
+  final PersonDao personDao = PersonDao();
 
   @override
   void initState() {
@@ -39,7 +41,8 @@ class _PeoplePageState extends State<PeoplePage> {
             break;
           case ConnectionState.done:
             if (snapshot.hasData) {
-              return PeopleListView(snapshot.data!);
+              final List<People> people = snapshot.data!;
+              return PeopleListView(people, dao: personDao);
             } else if (snapshot.hasError) {
               final error = snapshot.error;
               return CenteredMessage('F: $error', icon: Icons.error);

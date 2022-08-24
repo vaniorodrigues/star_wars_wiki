@@ -62,15 +62,4 @@ class MovieDao {
       );
     }
   }
-
-  // Future<int> addFavorite(Movie movie) async {
-  //   final Database database = await getMovieDatabase();
-  //   Map<String, dynamic> movieMap = movie.toMap();
-  //   return database.insert(_tableName, movieMap);
-  // }
-
-  // Future<int> removeFavorite(Movie movie) async {
-  //   final Database database = await getMovieDatabase();
-  //   return database.delete(_tableName, where: '$_title = ?', whereArgs: [movie.title]);
-  // }
 }

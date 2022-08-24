@@ -3,8 +3,6 @@ import 'package:star_wars_wiki/screens/favorites_page.dart';
 import 'package:star_wars_wiki/screens/movies_page.dart';
 import 'package:star_wars_wiki/screens/people_page.dart';
 
-// TODO? make movies and people load only once from API
-
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
 

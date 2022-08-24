@@ -16,8 +16,7 @@ class MoviesPage extends StatefulWidget {
 class _MoviesPageState extends State<MoviesPage> {
   final MoviesWebClient movieClient = MoviesWebClient();
   late Future<Movies> dataFuture;
-  late Future<List<Movie>> dataFutureFavorite;
-  final MovieDao daoMovie = MovieDao();
+  final MovieDao movieDao = MovieDao();
 
   @override
   void initState() {
@@ -46,7 +45,7 @@ class _MoviesPageState extends State<MoviesPage> {
               if (movies.results.isNotEmpty) {
                 return MoviesListView(
                   movies,
-                  dao: daoMovie,
+                  dao: movieDao,
                 );
               } else {
                 return CenteredMessage('Error no movies found!', icon: Icons.warning);
