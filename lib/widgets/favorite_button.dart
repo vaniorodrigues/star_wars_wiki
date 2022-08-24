@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-const Color favoriteButtonColor = Color.fromARGB(243, 255, 217, 0);
-const double favIconSize = 24;
+import 'package:star_wars_wiki/screens/home_screen.dart';
 
 class FavoriteButton extends StatefulWidget {
   const FavoriteButton(
@@ -36,8 +34,8 @@ class _FavoriteButtonState extends State<FavoriteButton> {
         setState(() => isFavorite = !isFavorite);
       },
       child: (isFavorite)
-          ? const Icon(Icons.favorite, color: favoriteButtonColor, size: favIconSize)
-          : const Icon(Icons.favorite_border, color: favoriteButtonColor, size: favIconSize),
+          ? const Icon(Icons.favorite, color: favoriteButtonColor, size: favoriteIconSize)
+          : const Icon(Icons.favorite_border, color: favoriteButtonColor, size: favoriteIconSize),
     );
   }
 }

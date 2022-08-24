@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:star_wars_wiki/screens/favorites_page.dart';
-import 'package:star_wars_wiki/screens/movies_page.dart';
-import 'package:star_wars_wiki/screens/people_page.dart';
+import 'package:star_wars_wiki/screens/pages/favorites_page.dart';
+import 'package:star_wars_wiki/screens/pages/movies_page.dart';
+import 'package:star_wars_wiki/screens/pages/people_page.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);

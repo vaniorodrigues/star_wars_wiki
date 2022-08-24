@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:numerus/roman/roman.dart';
-import 'package:star_wars_wiki/components/favorite_fetcher.dart';
 import 'package:star_wars_wiki/database/dao/movie_dao.dart';
 import 'package:star_wars_wiki/database/dao/person_dao.dart';
 import 'package:star_wars_wiki/models/movies.dart';
 import 'package:star_wars_wiki/models/people.dart';
-
-const Color colorMovieFavorite = Colors.red;
-const Color colorPersonFavorite = Color.fromARGB(255, 29, 218, 35);
+import 'package:star_wars_wiki/screens/home_screen.dart';
+import 'package:star_wars_wiki/widgets/movie_card.dart';
+import 'package:star_wars_wiki/widgets/person_card.dart';
 
 class FavoriteListView extends StatelessWidget {
   final List<Movie> movieList;
@@ -28,9 +26,9 @@ class FavoriteListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Flexible(
+        Expanded(
           child: ListView.builder(
-            shrinkWrap: true,
+            // shrinkWrap: true,
             itemCount: movieList.length,
             itemBuilder: (context, index) {
               final Movie movie = movieList[index];
@@ -42,7 +40,8 @@ class FavoriteListView extends StatelessWidget {
             },
           ),
         ),
-        Flexible(
+        const SizedBox(height: 20),
+        Expanded(
           child: ListView.builder(
             shrinkWrap: true,
             itemCount: personList.length,
@@ -57,65 +56,6 @@ class FavoriteListView extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class MovieCard extends StatelessWidget {
-  const MovieCard({
-    Key? key,
-    required this.movie,
-    required this.dao,
-    this.colorText = Colors.white,
-  }) : super(key: key);
-
-  final Movie movie;
-  final MovieDao dao;
-  final Color colorText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        title: Text(
-          movie.title,
-          style: TextStyle(color: colorText),
-        ),
-        subtitle: Text('Episódio ${movie.episodeId.toRomanNumeralString()} (${movie.releaseDate.toString()})'),
-        trailing: FavoriteFetcher(movie, dao: dao),
-      ),
-    );
-  }
-}
-
-class PersonCard extends StatelessWidget {
-  const PersonCard({
-    Key? key,
-    required this.person,
-    required this.dao,
-    this.colorText = Colors.white,
-  }) : super(key: key);
-
-  final Person person;
-  final PersonDao dao;
-  final Color colorText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        title: Text(
-          person.name,
-          style: TextStyle(color: colorText),
-        ),
-        trailing: FavoriteFetcher(person, dao: dao),
-      ),
     );
   }
 }
