@@ -6,7 +6,7 @@ The app also features a button that redirects you directly to the https://www.st
 It also alows you to create and customize your own avatar! Thanks to the flutter package [Fluttermoji](https://pub.dev/packages/fluttermoji).
 
 ## How to run on your android device from apk:
-Get the apk file located at the [apk folder](./apk/app-release.apk), and upload to your android device.
+Get the apk file located at the [apk folder](./apk/), and upload to your android device.
 
 ## How to run on your android emulator from source code:
 You first need to clone this repository:
