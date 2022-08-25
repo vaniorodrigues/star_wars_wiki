@@ -33,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: Column(
         children: [
+          /// Top Area of the [HomeScreen]
           Container(
             color: colorTopArea,
             height: height * 0.15,
@@ -64,13 +65,15 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
+
+          /// Bottom Area of the [HomeScreen]
           Expanded(
             child: (isWebViewVisible)
                 ? const InAppWebViewPage()
                 : (isFlutterMojiVisible)
                     ? const FluttermojiPage()
                     : const BottomNavBar(),
-          )
+          ),
         ],
       ),
     );
