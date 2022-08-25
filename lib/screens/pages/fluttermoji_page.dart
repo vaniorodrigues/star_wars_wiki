@@ -44,17 +44,10 @@ class FluttermojiPageState extends State<FluttermojiPage> {
                       child: Column(
                         children: [
                           FluttermojiSaveWidget(
-                            radius: 10,
+                            radius: 30,
                             splashColor: Colors.white,
                             theme: FluttermojiThemeData(
                               iconColor: Colors.white,
-                            ),
-                          ),
-                          const Text(
-                            'Salvar',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ],
