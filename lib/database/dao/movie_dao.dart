@@ -35,26 +35,22 @@ class MovieDao {
     final Database database = await getMovieDatabase();
     final List<Map<String, dynamic>> maps =
         await database.query(_tableName, where: '$_title = ?', whereArgs: [movie.title]);
-    debugPrint('isFavorite: ${movie.title}  - ${movie.id} - ${maps.isNotEmpty}');
     return (maps.isNotEmpty);
   }
 
   /// Changes the favorite status of a movie. If movie is not favorite, add it to the database, else, remove it from the database.
   Future<void> updateFavorite(Movie movie) async {
-    debugPrint('MovieDao.updateFavorite ---> trying to updateFavorite');
     final Database database = await getMovieDatabase();
     final List<Map<String, dynamic>> maps =
         await database.query(_tableName, where: '$_title = ?', whereArgs: [movie.title]);
 
     if (maps.isEmpty) {
-      debugPrint('MovieDao.updateFavorite ---> addign to favorites');
       await database.insert(
         _tableName,
         movie.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
     } else {
-      debugPrint('MovieDao.updateFavorite ---> removing from favorites');
       await database.delete(
         _tableName,
         where: '$_title = ?',

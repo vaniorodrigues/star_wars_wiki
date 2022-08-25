@@ -13,7 +13,6 @@ class PersonDao {
   static const String _name = 'name';
 
   Future<List<Person>> getFavorites() async {
-    debugPrint('PersonDao.getFavorites ---> trying to getFavorites');
     final Database database = await getPersonDatabase();
     final List<Map<String, dynamic>> maps = await database.query(_tableName);
     return List.generate(maps.length, (i) {
@@ -28,7 +27,6 @@ class PersonDao {
     final Database database = await getPersonDatabase();
     final List<Map<String, dynamic>> maps =
         await database.query(_tableName, where: '$_name = ?', whereArgs: [person.name]);
-    debugPrint('isFavorite: ${person.name}  - ${person.id} - ${maps.isNotEmpty}');
     return (maps.isNotEmpty);
   }
 
@@ -38,14 +36,12 @@ class PersonDao {
         await database.query(_tableName, where: '$_name = ?', whereArgs: [person.name]);
 
     if (maps.isEmpty) {
-      debugPrint('PersonDao.updateFavorite ---> addign to favorites');
       await database.insert(
         _tableName,
         person.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
     } else {
-      debugPrint('PersonDao.updateFavorite ---> removing from favorites');
       await database.delete(
         _tableName,
         where: '$_name = ?',

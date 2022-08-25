@@ -44,7 +44,6 @@ class _FavoritesPageState extends State<FavoritesPage> {
           case ConnectionState.active:
             break;
           case ConnectionState.done:
-            debugPrint('snapshot.data: ${snapshot.data}');
             if (snapshot.hasData) {
               final List<Movie> movieList = snapshot.data![0];
               final List<Person> personList = snapshot.data![1];
