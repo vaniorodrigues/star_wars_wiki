@@ -48,13 +48,13 @@ class _MoviesPageState extends State<MoviesPage> {
                   dao: movieDao,
                 );
               } else {
-                return CenteredMessage('Error no movies found!', icon: Icons.warning);
+                return const CenteredMessage('Error no movies found!', icon: Icons.warning);
               }
             } else if (snapshot.hasError) {
               final error = snapshot.error;
               return CenteredMessage('$error', icon: Icons.error);
             } else {
-              return CenteredMessage('Unknown error', icon: Icons.error_outline);
+              return const CenteredMessage('Unknown error', icon: Icons.error_outline);
             }
         }
         return const Progress();

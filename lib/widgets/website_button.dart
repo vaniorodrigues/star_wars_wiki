@@ -23,9 +23,18 @@ class MainMenuButton extends StatelessWidget {
         // overlayColor: MaterialStateProperty.all<Color>(Colors.white),
       ),
       onPressed: () => onPressed(),
-      child: Text(
-        text,
-        style: TextStyle(fontSize: 16, color: Color.fromARGB(255, 242, 242, 242)),
+      child: Row(
+        children: [
+          Text(
+            text,
+            style: const TextStyle(fontSize: 16, color: Color.fromARGB(255, 242, 242, 242)),
+          ),
+          const SizedBox(
+            width: 8.0,
+            height: 48.0,
+          ),
+          const Icon(Icons.launch),
+        ],
       ),
     );
   }

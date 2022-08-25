@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: height * 0.15,
             child: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(24.0, 12.0, 24.0, 0.0),
+                padding: const EdgeInsets.fromLTRB(24.0, 16.0, 24.0, 0.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,38 +54,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       onTap: () {
                         setState(() => isFlutterMojiVisible = !isFlutterMojiVisible);
                       },
-                      child: (isFlutterMojiVisible)
-                          ? Container(
-                              padding: EdgeInsets.all(8),
-                              height: 60,
-                              // width: 60,
-                              decoration: BoxDecoration(
-                                color: saveAvatarButton,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Column(
-                                children: [
-                                  FluttermojiSaveWidget(
-                                    radius: 10,
-                                    splashColor: Colors.white,
-                                    theme: FluttermojiThemeData(
-                                      iconColor: Colors.white,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Salvar',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          : FluttermojiCircleAvatar(
-                              backgroundColor: Colors.grey[200],
-                              radius: 30,
-                            ),
+                      child: FluttermojiCircleAvatar(
+                        backgroundColor: Colors.grey[200],
+                        radius: 30,
+                      ),
                     ),
                   ],
                 ),
@@ -94,10 +66,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Expanded(
             child: (isWebViewVisible)
-                ? InAppWebViewPage()
+                ? const InAppWebViewPage()
                 : (isFlutterMojiVisible)
-                    ? FluttermojiPage()
-                    : BottomNavBar(),
+                    ? const FluttermojiPage()
+                    : const BottomNavBar(),
           )
         ],
       ),

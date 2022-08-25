@@ -60,7 +60,7 @@ class InAppWebViewPageState extends State<InAppWebViewPage> {
     return Column(
       children: <Widget>[
         TextField(
-          decoration: InputDecoration(prefixIcon: Icon(Icons.search)),
+          decoration: const InputDecoration(prefixIcon: Icon(Icons.search)),
           controller: urlController,
           keyboardType: TextInputType.url,
           onSubmitted: (value) {
@@ -131,7 +131,7 @@ class InAppWebViewPageState extends State<InAppWebViewPage> {
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(colorButtonsWebView),
               ),
-              child: Icon(Icons.arrow_back),
+              child: const Icon(Icons.arrow_back),
               onPressed: () {
                 webViewController?.goBack();
               },
@@ -140,7 +140,7 @@ class InAppWebViewPageState extends State<InAppWebViewPage> {
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(colorButtonsWebView),
               ),
-              child: Icon(Icons.arrow_forward),
+              child: const Icon(Icons.arrow_forward),
               onPressed: () {
                 webViewController?.goForward();
               },
@@ -149,7 +149,7 @@ class InAppWebViewPageState extends State<InAppWebViewPage> {
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(colorButtonsWebView),
               ),
-              child: Icon(Icons.refresh),
+              child: const Icon(Icons.refresh),
               onPressed: () {
                 webViewController?.reload();
               },

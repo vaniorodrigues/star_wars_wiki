@@ -20,7 +20,7 @@ class MovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 10,
-      margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
+      margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
       child: ListTile(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0),

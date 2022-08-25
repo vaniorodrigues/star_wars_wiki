@@ -14,9 +14,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
 
   List<Widget> widgetOptions = <Widget>[
-    MoviesPage(),
-    PeoplePage(),
-    FavoritesPage(),
+    const MoviesPage(),
+    const PeoplePage(),
+    const FavoritesPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -48,9 +48,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Color.fromARGB(255, 0, 255, 115),
+        selectedItemColor: const Color.fromARGB(255, 0, 255, 115),
         onTap: _onItemTapped,
-        backgroundColor: Color.fromARGB(255, 53, 52, 52),
+        backgroundColor: const Color.fromARGB(255, 53, 52, 52),
       ),
     );
   }

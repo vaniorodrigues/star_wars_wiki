@@ -16,51 +16,53 @@ class FluttermojiPageState extends State<FluttermojiPage> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return ListView(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       children: <Widget>[
         SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Text(
                   'Edite aqui o seu avatar!',
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
                   textAlign: TextAlign.center,
                 ),
               ),
-              // SizedBox(
-              //   width: min(600, width * 0.85),
-              //   child: Row(
-              //     children: [
-              //       Spacer(),
-              //       Container(
-              //         padding: EdgeInsets.all(8),
-              //         decoration: BoxDecoration(
-              //           color: Colors.black45,
-              //           borderRadius: BorderRadius.circular(8),
-              //         ),
-              //         // color: buttonTopArea,
-              //         child: Column(
-              //           children: [
-              //             FluttermojiSaveWidget(
-              //               radius: 10,
-              //               splashColor: Colors.white,
-              //             ),
-              //             Text(
-              //               'Salvar',
-              //               style: TextStyle(
-              //                 fontSize: 16,
-              //                 fontWeight: FontWeight.w600,
-              //               ),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
+              SizedBox(
+                width: min(600, width * 0.85),
+                child: Row(
+                  children: [
+                    const Spacer(),
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: saveAvatarButton,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Column(
+                        children: [
+                          FluttermojiSaveWidget(
+                            radius: 10,
+                            splashColor: Colors.white,
+                            theme: FluttermojiThemeData(
+                              iconColor: Colors.white,
+                            ),
+                          ),
+                          const Text(
+                            'Salvar',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: FluttermojiCircleAvatar(
@@ -73,13 +75,13 @@ class FluttermojiPageState extends State<FluttermojiPage> {
                 child: FluttermojiCustomizer(
                   scaffoldWidth: min(600, width * 0.85),
                   autosave: false,
-                  theme: FluttermojiThemeData(boxDecoration: BoxDecoration(boxShadow: const [BoxShadow()])),
+                  theme: FluttermojiThemeData(boxDecoration: const BoxDecoration(boxShadow: [BoxShadow()])),
                 ),
               ),
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 100,
         ),
       ],

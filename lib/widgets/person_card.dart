@@ -18,7 +18,7 @@ class PersonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
+      margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
       elevation: 10,
       child: ListTile(
         shape: RoundedRectangleBorder(

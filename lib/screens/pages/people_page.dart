@@ -47,7 +47,7 @@ class _PeoplePageState extends State<PeoplePage> {
               final error = snapshot.error;
               return CenteredMessage('F: $error', icon: Icons.error);
             } else {
-              return CenteredMessage('Unknown error', icon: Icons.error_outline);
+              return const CenteredMessage('Unknown error', icon: Icons.error_outline);
             }
         }
         return const Progress();
