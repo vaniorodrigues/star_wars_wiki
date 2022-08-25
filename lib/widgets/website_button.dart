@@ -16,9 +16,11 @@ class MainMenuButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(
-          backgroundColor,
-        ),
+        backgroundColor: MaterialStateProperty.all<Color>(backgroundColor),
+        // elevation: MaterialStateProperty.all<double>(3),
+        // shadowColor: MaterialStateProperty.all<Color>(Colors.white),
+        // surfaceTintColor: MaterialStateProperty.all<Color>(Colors.white),
+        // overlayColor: MaterialStateProperty.all<Color>(Colors.white),
       ),
       onPressed: () => onPressed(),
       child: Text(
