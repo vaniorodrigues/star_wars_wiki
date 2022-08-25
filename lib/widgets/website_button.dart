@@ -5,17 +5,19 @@ class WebSiteButton extends StatelessWidget {
     Key? key,
     required this.onPressed,
     required this.text,
+    this.backgroundColor = const Color.fromARGB(255, 127, 126, 126),
   }) : super(key: key);
 
   final Function onPressed;
   final String text;
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(
-          Color.fromARGB(255, 127, 126, 126),
+          backgroundColor,
         ),
       ),
       onPressed: () => onPressed(),
