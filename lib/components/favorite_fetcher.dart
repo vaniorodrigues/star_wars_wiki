@@ -20,8 +20,7 @@ class FavoriteFetcher extends StatelessWidget {
         if (snapshot.hasData) {
           return FavoriteButton(object, dao: dao, isFavorite: snapshot.data!);
         } else {
-          // return const CircularProgressIndicator();
-          return const Text('Loading...');
+          return const CircularProgressIndicator();
         }
       },
     );

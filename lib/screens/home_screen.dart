@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
           /// Top Area of the [HomeScreen]
           Container(
             color: colorTopArea,
-            height: height * 0.15,
+            height: height * 0.2,
             child: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(24.0, 16.0, 24.0, 0.0),
