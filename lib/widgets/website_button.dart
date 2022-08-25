@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class WebSiteButton extends StatelessWidget {
-  const WebSiteButton({
+class MainMenuButton extends StatelessWidget {
+  const MainMenuButton({
     Key? key,
     required this.onPressed,
     required this.text,

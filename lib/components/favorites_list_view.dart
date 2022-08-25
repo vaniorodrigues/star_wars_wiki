@@ -19,43 +19,35 @@ class FavoriteListView extends StatelessWidget {
     required this.movieList,
     required this.personList,
     required this.personDao,
-    // required this.people,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: movieList.length,
-            itemBuilder: (context, index) {
-              final Movie movie = movieList[index];
-              return MovieCard(
-                movie: movie,
-                dao: movieDao,
-                colorText: colorMovieFavorite,
-              );
-            },
-          ),
-        ),
-        // const SizedBox(height: 5),
-        Expanded(
-          child: ListView.builder(
-            // shrinkWrap: true,
-            itemCount: personList.length,
-            itemBuilder: (context, index) {
-              final Person person = personList[index];
-              return PersonCard(
-                person: person,
-                dao: personDao,
-                colorText: colorPersonFavorite,
-              );
-            },
-          ),
-        ),
-      ],
+    List<dynamic> list = [];
+
+    list.addAll(movieList);
+    list.addAll(personList);
+    return ListView.builder(
+      itemCount: list.length,
+      itemBuilder: (context, index) {
+        // final Movie movie = movieList[index];
+        final dynamic item = list[index];
+        if (item is Movie) {
+          return MovieCard(
+            movie: item,
+            dao: movieDao,
+            colorText: colorMovieFavorite,
+          );
+        } else if (item is Person) {
+          return PersonCard(
+            person: item,
+            dao: personDao,
+            colorText: colorPersonFavorite,
+          );
+        } else {
+          return Container();
+        }
+      },
     );
   }
 }

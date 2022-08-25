@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:star_wars_wiki/components/bottom_nav_bar.dart';
 import 'package:star_wars_wiki/components/top_area.dart';
-import 'package:star_wars_wiki/screens/in_app_web_view_screen.dart';
+import 'package:star_wars_wiki/screens/pages/in_app_web_view_screen.dart';
 import 'package:star_wars_wiki/widgets/website_button.dart';
 
 const double favoriteIconSize = 24;
@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  WebSiteButton(
+                  MainMenuButton(
                     text: 'Site Oficial',
                     backgroundColor: (isWebViewVisible) ? colorButtonsWebView : Color.fromARGB(255, 127, 126, 126),
                     onPressed: () {
@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         Expanded(
-          child: (isWebViewVisible) ? InAppWebViewScreen() : BottomNavBar(),
+          child: (isWebViewVisible) ? InAppWebViewPage() : BottomNavBar(),
         )
       ],
     );

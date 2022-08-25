@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:star_wars_wiki/screens/in_app_web_view_screen.dart';
+import 'package:star_wars_wiki/screens/pages/in_app_web_view_screen.dart';
 import 'package:star_wars_wiki/widgets/website_button.dart';
 
 class TopArea extends StatelessWidget {
@@ -13,12 +13,12 @@ class TopArea extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          WebSiteButton(
+          MainMenuButton(
             text: 'Site Oficial',
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => InAppWebViewScreen(),
+                  builder: (context) => InAppWebViewPage(),
                 ),
               );
             },

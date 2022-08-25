@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:star_wars_wiki/screens/home_screen.dart';
 
-class InAppWebViewScreen extends StatefulWidget {
-  const InAppWebViewScreen({Key? key}) : super(key: key);
+class InAppWebViewPage extends StatefulWidget {
+  const InAppWebViewPage({Key? key}) : super(key: key);
 
   @override
-  InAppWebViewScreenState createState() => InAppWebViewScreenState();
+  InAppWebViewPageState createState() => InAppWebViewPageState();
 }
 
-class InAppWebViewScreenState extends State<InAppWebViewScreen> {
+class InAppWebViewPageState extends State<InAppWebViewPage> {
   final GlobalKey webViewKey = GlobalKey();
 
   InAppWebViewController? webViewController;
